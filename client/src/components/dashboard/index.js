@@ -160,7 +160,7 @@ function Dashboard() {
                             <div className="form-group">
                                 <label>Test Type:</label>
                                 <div className="radio-group-container">
-                                    {['MRI', 'CTSCAN', 'X-Ray'].map(test => (
+                                    {['MRI', 'X-Ray'].map(test => (
                                         <label key={test} className="radio-group">
                                             <input
                                                 type="radio"

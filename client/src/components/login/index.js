@@ -33,10 +33,9 @@ const Login = () => {
             });
 
             const data = await response.json();
-            console.log(data);
 
             // Check for the token after the login attempt
-            if (getCookie("token")) {
+            if (response.ok) {
                 navigate('/dashboard');  // Redirect to dashboard on successful login
             } else {
                 setError("Login failed: Invalid credentials or server error.");
