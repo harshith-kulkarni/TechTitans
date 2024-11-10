@@ -7,12 +7,10 @@
     font-family: "Poppins", sans-serif;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f2f5;
+body, html {
+    width: 100vw!important;
+    height: 100vh!important;
+    overflow: hidden!important;
 }
 
 .login-container {
@@ -22,7 +20,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     padding: 40px;
-    margin: 20px;
+    margin: 600px;
 }
 
 .login-form h1 {
@@ -89,6 +87,13 @@ body {
 
 .btn:hover {
     background: #0056b3;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .register-link {

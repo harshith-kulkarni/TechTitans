@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './index.css';
 import 'boxicons/css/boxicons.min.css';
-import { getCookie } from '../../miniFunctions/cookie-parser';
 import { useNavigate } from "react-router-dom";
+import backgroundImage from '../../assets/loginBack.jpg';
 
 const Login = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -15,10 +15,10 @@ const Login = () => {
 
     const handleLogin = async (event) => {
         event.preventDefault();
-        
+
         const username = document.querySelector("#login-field-username").value;
         const password = document.querySelector("#login-field-password").value;
-        
+
         try {
             const response = await fetch('http://localhost:8000/login', {
                 method: 'POST',
@@ -27,16 +27,15 @@ const Login = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    username: username, 
-                    password: password 
+                    username: username,
+                    password: password
                 })
             });
 
             const data = await response.json();
 
-            // Check for the token after the login attempt
             if (response.ok) {
-                navigate('/dashboard');  // Redirect to dashboard on successful login
+                navigate('/dashboard');
             } else {
                 setError("Login failed: Invalid credentials or server error.");
             }
@@ -47,38 +46,50 @@ const Login = () => {
     };
 
     return (
-        <div className="login-container">
-            <form id="loginForm" className="login-form" onSubmit={handleLogin}>
-                <h1>Login</h1>
-                <div className="input-box">
-                    <input
-                        type="text"
-                        id="login-field-username"
-                        placeholder="Username"
-                        required
-                    />
-                    <i className='bx bxs-user'></i>
-                </div>
-                <div className="input-box">
-                    <input
-                        type={passwordVisible ? "text" : "password"}
-                        id="login-field-password"
-                        placeholder="Password"
-                        required
-                    />
-                    <span className="eye" onClick={togglePasswordVisibility}>
-                        <i className={`bx ${passwordVisible ? 'bxs-hide' : 'bxs-show'}`}></i>
-                    </span>
-                </div>
-                <button type="submit" className="btn">Login</button>
-                {error && <div className="error-message">{error}</div>}  {/* Display error message if any */}
-                <div className="register-link">
-                    <p>Don't have an Account? <a href="#" onClick={(e) => {
-                        e.preventDefault();
-                        window.location.href = '/signup';
-                    }}>Signup</a></p>
-                </div>
-            </form>
+        <div
+            style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                minHeight: '100vh',
+                backgroundImage: `url(${backgroundImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+            }}
+        >
+            <div className="login-container">
+                <form id="loginForm" className="login-form" onSubmit={handleLogin}>
+                    <h1>Login</h1>
+                    <div className="input-box">
+                        <input
+                            type="text"
+                            id="login-field-username"
+                            placeholder="Username"
+                            required
+                        />
+                        <i className='bx bxs-user'></i>
+                    </div>
+                    <div className="input-box">
+                        <input
+                            type={passwordVisible ? "text" : "password"}
+                            id="login-field-password"
+                            placeholder="Password"
+                            required
+                        />
+                        <span className="eye" onClick={togglePasswordVisibility}>
+                            <i className={`bx ${passwordVisible ? 'bxs-hide' : 'bxs-show'}`}></i>
+                        </span>
+                    </div>
+                    <button type="submit" className="btn">Login</button>
+                    {error && <div className="error-message">{error}</div>}
+                    <div className="register-link">
+                        <p>Don't have an Account? <a href="#" onClick={(e) => {
+                            e.preventDefault();
+                            window.location.href = '/signup';
+                        }}>Signup</a></p>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };
