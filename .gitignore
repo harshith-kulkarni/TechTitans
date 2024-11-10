@@ -44,15 +44,3 @@ processed/
 
 # Ignore Python cache
 __pycache__/
-
-#Ignore .h5 files
-*.h5
-
-# Add after completion of everthing
-## misc
-#.DS_Store
-#.env.local
-#.env.development.local
-#.env.test.local
-#.env.production.local
-#.env
